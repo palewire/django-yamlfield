@@ -46,6 +46,6 @@ class YAMLField(models.TextField):
         """
         value = getattr(obj, self.attname)
         if not value or value == "":
-            value
+            return value
         return yaml.dump(value, Dumper=DjangoSafeDumper,
             default_flow_style=False)
