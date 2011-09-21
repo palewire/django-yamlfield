@@ -71,7 +71,7 @@ if len(sys.argv) > 1 and sys.argv[1] == 'bdist_wininst':
         file_info[0] = '\\PURELIB\\%s' % file_info[0]
 
 setup(name='django-yamlfield',
-      version='0.1.1',
+      version='0.1.2',
       description='A Django database field for storing YAML data',
       author='Ben Welsh',
       author_email='ben.welsh@latimes.com',
