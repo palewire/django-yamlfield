@@ -2,6 +2,7 @@ import datetime
 from fields import YAMLField
 from django.db import models
 from django.test import TestCase
+from django.db import connection
 
 class YAMLModel(models.Model):
     yaml = YAMLField()
@@ -44,5 +45,19 @@ class YAMLFieldTest(TestCase):
         obj = YAMLModel.objects.create(yaml=yaml_obj)
         new_obj = YAMLModel.objects.get(id=obj.id)
         self.failUnlessEqual(new_obj.yaml, yaml_obj)
+    
+    def test_blank_yaml_field(self):
+        # When there's no yaml...
+        obj = YAMLModel.objects.create()
+        # It should come out to python as None
+        new_obj = YAMLModel.objects.get(id=obj.id)
+        self.failUnlessEqual(new_obj.yaml, None)
+        # But be stored as an empty string in the database
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM yamlfield_yamlmodel;")
+        row = cursor.fetchone()
+        self.failUnlessEqual(row[1], "")
+
+
 
 

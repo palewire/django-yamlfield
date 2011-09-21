@@ -31,7 +31,7 @@ class YAMLField(models.TextField):
         Convert our Python object to a string of YAML before we save.
         """
         if not value or value == "":
-            return None
+            return ""
         if isinstance(value, (dict, list)):
             value = yaml.dump(value, Dumper=DjangoSafeDumper, 
                 default_flow_style=False)
