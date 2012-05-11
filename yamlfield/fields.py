@@ -49,3 +49,10 @@ class YAMLField(models.TextField):
             return value
         return yaml.dump(value, Dumper=DjangoSafeDumper,
             default_flow_style=False)
+
+try:
+    from south.modelsinspector import add_introspection_rules
+    add_introspection_rules([], ["^yamlfield\.fields\.YAMLField"])
+except ImportError:
+    pass
+
