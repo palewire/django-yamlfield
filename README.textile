@@ -24,3 +24,7 @@ That's it! You can now start storing YAML data.
 h3. Credits
 
 This module was developed by Ben Welsh, based on Brad Jasper's "django-jsonfield":https://github.com/bradjasper/django-jsonfield.
+
+h3. References
+
+* "Buildbot":http://travis-ci.org/#!/datadesk/django-yamlfield
