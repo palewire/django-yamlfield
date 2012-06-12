@@ -35,7 +35,7 @@ class YAMLField(models.TextField):
         if isinstance(value, (dict, list)):
             value = yaml.dump(value, Dumper=DjangoSafeDumper,
                 default_flow_style=False)
-        return super(YAMLField, self).get_db_prep_save(value, connection)
+        return super(YAMLField, self).get_db_prep_save(value, connection=connection)
 
     def value_from_object(self, obj):
         """
