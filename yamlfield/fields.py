@@ -26,7 +26,7 @@ class YAMLField(models.TextField):
             pass
         return value
 
-    def get_db_prep_save(self, value, connection, prepared=False):
+    def get_db_prep_save(self, value, connection):
         """
         Convert our Python object to a string of YAML before we save.
         """

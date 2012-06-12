@@ -25,6 +25,6 @@ h3. Credits
 
 This module was developed by Ben Welsh, based on Brad Jasper's "django-jsonfield":https://github.com/bradjasper/django-jsonfield.
 
-h3. References
+h3. The rest
 
-* "Buildbot":http://travis-ci.org/#!/datadesk/django-yamlfield
+* Supports Django version 1.2 and up and Python versions 2.5, 2.6, 2.7, which is routinely tested using "Travis CI":http://travis-ci.org/#!/datadesk/django-yamlfield
