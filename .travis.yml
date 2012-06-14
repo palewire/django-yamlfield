@@ -12,4 +12,4 @@ install:
  - pip install -r requirements.txt --use-mirrors
  - pip install -q Django==$DJANGO_VERSION --use-mirrors
 # command to run tests
-script: python qiktest.py yamlfield
+script: python quicktest.py yamlfield
