@@ -22,7 +22,7 @@ class YAMLField(models.TextField):
         try:
             if isinstance(value, basestring):
                 return yaml.load(value)
-        except ValueError:
+        except (ValueError, yaml.scanner.ScannerError):
             pass
         return value
 
@@ -33,7 +33,7 @@ class YAMLField(models.TextField):
         if not value or value == "":
             return ""
         if isinstance(value, (dict, list)):
-            value = yaml.dump(value, Dumper=DjangoSafeDumper,
+            value = yaml.dump(value, Dumper=DjangoSafeDumper, allow_unicode=True,
                 default_flow_style=False)
         return super(YAMLField, self).get_db_prep_save(value, connection=connection)
 
@@ -47,7 +47,7 @@ class YAMLField(models.TextField):
         value = getattr(obj, self.attname)
         if not value or value == "":
             return value
-        return yaml.dump(value, Dumper=DjangoSafeDumper,
+        return yaml.dump(value, Dumper=DjangoSafeDumper, allow_unicode=True,
             default_flow_style=False)
 
 try:
