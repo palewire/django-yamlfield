@@ -56,7 +56,7 @@ class YAMLFieldTest(TestCase):
         """
         obj = YAMLModel.objects.create(yaml=bad_str)
         bad_obj = YAMLModel.objects.get(id=obj.id)
-        self.assertNotIsInstance(bad_obj.yaml, yaml.scanner.ScannerError)
+        self.assertEqual(type(bad_obj.yaml), str)
 
     def test_yaml_list(self):
         """Test storing a yaml list"""
