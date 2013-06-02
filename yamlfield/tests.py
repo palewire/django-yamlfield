@@ -1,4 +1,7 @@
+# -*- coding:utf-8 -*-
+
 import datetime
+import yaml
 from fields import YAMLField
 from django.db import models
 from django.test import TestCase
