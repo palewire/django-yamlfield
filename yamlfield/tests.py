@@ -3,7 +3,9 @@
 import datetime
 import yaml
 from fields import YAMLField
+from forms import YAMLFormField
 from django.db import models
+from django.forms.util import ValidationError
 from django.test import TestCase
 from django.db import connection
 
@@ -78,5 +80,28 @@ class YAMLFieldTest(TestCase):
         self.failUnlessEqual(row[1], "")
 
 
+class YAMLFormFieldTest(TestCase):
+    """YAMLFormField Tests"""
 
+    def test_clean_bad(self):
+        """Test validating bad YAMLFormField value"""
+        field = YAMLFormField()
+        self.assertRaises(ValidationError, lambda:
+        field.clean("""
+            bad YAML
+        """))
 
+    def test_clean_good(self):
+        """Test validating good YAMLFormField value"""
+        field = YAMLFormField()
+        self.assertEqual(
+            isinstance(field.clean("""
+            a: 4
+            b:
+              - 1
+              - 3
+            c:
+              1: a
+              2: b
+        """), dict),
+        True)

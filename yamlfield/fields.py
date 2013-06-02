@@ -1,6 +1,9 @@
 import yaml
+
 from django.db import models
 from django.core.serializers.pyyaml import DjangoSafeDumper
+
+from forms import YAMLFormField
 
 
 class YAMLField(models.TextField):
@@ -49,6 +52,12 @@ class YAMLField(models.TextField):
             return value
         return yaml.dump(value, Dumper=DjangoSafeDumper, allow_unicode=True,
             default_flow_style=False)
+
+    def formfield(self, **kwargs):
+        defaults = {
+            'form_class': kwargs.get('form_class', YAMLFormField), }
+        defaults.update(kwargs)
+        return super(YAMLField, self).formfield(**defaults)
 
 try:
     from south.modelsinspector import add_introspection_rules
