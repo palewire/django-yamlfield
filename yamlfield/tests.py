@@ -54,7 +54,7 @@ class YAMLFieldTest(TestCase):
     def test_yaml_field_load_bad(self):
         """Test loading a bad YAML object from the DB"""
         bad_str = """
-        vary bad string
+        very bad string
         """
         obj = YAMLModel.objects.create(yaml=bad_str)
         bad_obj = YAMLModel.objects.get(id=obj.id)
