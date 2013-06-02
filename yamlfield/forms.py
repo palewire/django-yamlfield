@@ -28,7 +28,7 @@ class YAMLFormField(fields.Field):
         # check of value
         try:
            value = yaml.load(value)
-        except yaml.scanner.ScannerError as e:
+        except yaml.scanner.ScannerError(e):
            raise util.ValidationError('%s: %s' % (
                self.default_error_messages.get('invalid', ''),
                unicode(e)))
