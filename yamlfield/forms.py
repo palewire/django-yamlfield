@@ -28,10 +28,10 @@ class YAMLFormField(fields.Field):
         # check of value
         try:
            value = yaml.load(value)
-        except yaml.scanner.ScannerError(e):
+        except yaml.scanner.ScannerError:
            raise util.ValidationError('%s: %s' % (
                self.default_error_messages.get('invalid', ''),
-               unicode(e)))
+               unicode(yaml.scanner.ScannerError)))
         val = yaml.dump(
             value,
             Dumper=DjangoSafeDumper,
