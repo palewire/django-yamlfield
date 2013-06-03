@@ -17,7 +17,7 @@ class YAMLFormField(fields.Field):
         """
         Validates the given value. Raises ValidationError for any errors.
         :param value: string
-        :return: string
+        :return: dict
         """
         value = super(YAMLFormField, self).clean(value)
 
