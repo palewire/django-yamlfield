@@ -22,7 +22,7 @@ class YAMLFormField(fields.Field):
         value = super(YAMLFormField, self).clean(value)
 
         # allow an empty value on an optional field
-        if value is None:
+        if value is None or not len(value:
             return value
 
         # check of value
