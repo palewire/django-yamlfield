@@ -5,6 +5,8 @@
 
 A Django database field for storing "YAML":http://en.wikipedia.org/wiki/YAML data
 
+!https://travis-ci.org/datadesk/django-yamlfield.png?branch=master!:https://travis-ci.org/datadesk/django-yamlfield
+
 h3. Getting started
 
 Install this module
