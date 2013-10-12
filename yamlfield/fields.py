@@ -1,18 +1,16 @@
+import six
 import yaml
 from django.db import models
 from django.core.serializers.pyyaml import DjangoSafeDumper
 
 
-class YAMLField(models.TextField):
+class YAMLField(six.with_metaclass(models.SubfieldBase, models.TextField)):
     """
     YAMLField is a TextField that serializes and deserializes YAML data
     from the database.
 
     Based on https://github.com/bradjasper/django-jsonfield
     """
-    # Used so to_python() is called
-    __metaclass__ = models.SubfieldBase
-
     def to_python(self, value):
         """
         Convert our YAML string to a Python object after we load it from the DB.
@@ -20,7 +18,7 @@ class YAMLField(models.TextField):
         if value == "":
             return None
         try:
-            if isinstance(value, basestring):
+            if isinstance(value, six.string_types):
                 return yaml.load(value)
         except ValueError:
             pass

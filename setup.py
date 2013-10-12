@@ -79,5 +79,8 @@ setup(name='django-yamlfield',
       cmdclass = cmdclasses,
       data_files=data_files,
       include_package_data=True,
-      install_requires=['PyYAML==3.10'],
+      install_requires=[
+        'PyYAML==3.10',
+        'six==1.4.1'
+      ],
      )

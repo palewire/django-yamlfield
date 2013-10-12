@@ -1,6 +1,7 @@
+from __future__ import absolute_import
 import datetime
-from fields import YAMLField
 from django.db import models
+from .fields import YAMLField
 from django.test import TestCase
 from django.db import connection
 
@@ -57,7 +58,3 @@ class YAMLFieldTest(TestCase):
         cursor.execute("SELECT * FROM yamlfield_yamlmodel;")
         row = cursor.fetchone()
         self.failUnlessEqual(row[1], "")
-
-
-
-
