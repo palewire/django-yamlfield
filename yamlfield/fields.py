@@ -13,7 +13,8 @@ class YAMLField(six.with_metaclass(models.SubfieldBase, models.TextField)):
     """
     def to_python(self, value):
         """
-        Convert our YAML string to a Python object after we load it from the DB.
+        Convert our YAML string to a Python object
+        after we load it from the DB.
         """
         if value == "":
             return None
@@ -31,9 +32,15 @@ class YAMLField(six.with_metaclass(models.SubfieldBase, models.TextField)):
         if not value or value == "":
             return ""
         if isinstance(value, (dict, list)):
-            value = yaml.dump(value, Dumper=DjangoSafeDumper,
-                default_flow_style=False)
-        return super(YAMLField, self).get_db_prep_save(value, connection=connection)
+            value = yaml.dump(
+                value,
+                Dumper=DjangoSafeDumper,
+                default_flow_style=False
+            )
+        return super(YAMLField, self).get_db_prep_save(
+            value,
+            connection=connection
+        )
 
     def value_from_object(self, obj):
         """
@@ -45,12 +52,14 @@ class YAMLField(six.with_metaclass(models.SubfieldBase, models.TextField)):
         value = getattr(obj, self.attname)
         if not value or value == "":
             return value
-        return yaml.dump(value, Dumper=DjangoSafeDumper,
-            default_flow_style=False)
+        return yaml.dump(
+            value,
+            Dumper=DjangoSafeDumper,
+            default_flow_style=False
+        )
 
 try:
     from south.modelsinspector import add_introspection_rules
     add_introspection_rules([], ["^yamlfield\.fields\.YAMLField"])
 except ImportError:
     pass
-
