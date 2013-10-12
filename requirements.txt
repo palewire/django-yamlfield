@@ -3,6 +3,7 @@ argparse==1.2.1
 greeking==0.131
 py==1.4.17
 pep8==1.4.6
+pyflakes==0.7.3
 six==1.4.1
 tox==1.6.1
 virtualenv==1.10.1
