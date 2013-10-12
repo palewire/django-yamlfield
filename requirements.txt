@@ -1,3 +1,7 @@
 PyYAML==3.10
 argparse==1.2.1
-wsgiref==0.1.2
+greeking==0.131
+py==1.4.17
+six==1.4.1
+tox==1.6.1
+virtualenv==1.10.1
