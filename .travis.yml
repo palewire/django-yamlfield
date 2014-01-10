@@ -37,4 +37,6 @@ install:
 script:
  - pep8 yamlfield
  - pyflakes yamlfield
- - python quicktest.py yamlfield
+ - coverage run quicktest.py yamlfield
+after_success:
+  - coveralls

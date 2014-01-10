@@ -68,3 +68,17 @@ class YAMLFieldTest(TestCase):
         cursor.execute("SELECT * FROM yamlfield_yamlmodel;")
         row = cursor.fetchone()
         self.failUnlessEqual(row[1], "")
+
+    def test_bad_yaml_to_python(self):
+        YAMLField().to_python('2013-01-65')
+
+    def test_value_from_object(self):
+        yaml_obj = {
+            "item_1": "this is a yaml blah",
+            "blergh": "hey, hey, hey"
+        }
+        obj = YAMLModel.objects.create(yaml=yaml_obj)
+        YAMLModel._meta.get_field('yaml').value_from_object(obj)
+
+        obj2 = YAMLModel.objects.create(yaml='')
+        YAMLModel._meta.get_field('yaml').value_from_object(obj2)
