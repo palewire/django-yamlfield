@@ -38,9 +38,4 @@ That's it! You can now start storing YAML data.
 Credits
 -------
 
-This module was developed by Ben Welsh, based on Brad Jasper's "django-jsonfield":https://github.com/bradjasper/django-jsonfield.
-
-The rest
---------
-
-* Supports Django version 1.2 and up and Python versions 2.5, 2.6, 2.7, 3.2 and 3.3 which are routinely tested using "Travis CI":http://travis-ci.org/#!/datadesk/django-yamlfield
+This module was developed by Ben Welsh, based on Brad Jasper's [django-jsonfield](https://github.com/bradjasper/django-jsonfield).
