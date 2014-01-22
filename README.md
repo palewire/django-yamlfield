@@ -3,7 +3,7 @@
   8P    dP__Yb  88YbdP88 88  .o 88""   88 88""   88  .o  8I  dY 
  dP    dP""""Yb 88 YY 88 88ood8 88     88 888888 88ood8 8888Y"  </code></pre>
 
-A Django database field for storing "YAML":http://en.wikipedia.org/wiki/YAML data
+A Django database field for storing [YAML](http://en.wikipedia.org/wiki/YAML) data
 
 [![Build Status](https://travis-ci.org/datadesk/django-yamlfield.png?branch=master)](https://travis-ci.org/datadesk/django-yamlfield)
 [![PyPI version](https://badge.fury.io/py/django-yamlfield.png)](http://badge.fury.io/py/django-yamlfield)
