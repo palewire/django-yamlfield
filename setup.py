@@ -80,7 +80,7 @@ setup(name='django-yamlfield',
       data_files=data_files,
       include_package_data=True,
       install_requires=[
-        'PyYAML==3.10',
-        'six==1.4.1'
+        'PyYAML>=3.10',
+        'six>=1.4.1'
       ],
      )
