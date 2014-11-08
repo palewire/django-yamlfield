@@ -10,6 +10,7 @@ env:
   - DJANGO_VERSION=1.6.5
   - DJANGO_VERSION=1.7.1
 install: 
+ - pip install pep8 pyflakes coverage python-coveralls
  - pip install -q Django==$DJANGO_VERSION
  - python setup.py install
 script:
