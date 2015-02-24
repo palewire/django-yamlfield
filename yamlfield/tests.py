@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+import collections
 from django.db import models
 from .fields import YAMLField
 from django.test import TestCase
@@ -82,3 +83,18 @@ class YAMLFieldTest(TestCase):
 
         obj2 = YAMLModel.objects.create(yaml='')
         YAMLModel._meta.get_field('yaml').value_from_object(obj2)
+
+    def test_yaml_ordereddict(self):
+        """
+        Test storing an OrderedDict
+        """
+        ordered_data = collections.OrderedDict(
+            [('one', 1), ('two', 2), ('five', 5), ('seven', 7), ('ten', 10)]
+        )
+        obj = YAMLModel.objects.create(yaml=[ordered_data])
+        new_obj = YAMLModel.objects.get(id=obj.id)
+        self.failUnlessEqual(new_obj.yaml, [ordered_data])
+        ordered_data.pop('seven')
+        ordered_data['seven'] = 7
+        self.assertEqual(dict(ordered_data), dict(new_obj.yaml[0]))
+        self.failIfEqual(new_obj.yaml, [ordered_data])

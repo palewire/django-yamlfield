@@ -1,7 +1,7 @@
 import six
 import yaml
 from django.db import models
-from django.core.serializers.pyyaml import DjangoSafeDumper
+from .serializers import OrderedDumper, OrderedLoader
 
 
 class YAMLField(six.with_metaclass(models.SubfieldBase, models.TextField)):
@@ -20,7 +20,7 @@ class YAMLField(six.with_metaclass(models.SubfieldBase, models.TextField)):
             return None
         try:
             if isinstance(value, six.string_types):
-                return yaml.load(value)
+                return yaml.load(value, OrderedLoader)
         except ValueError:
             pass
         return value
@@ -34,7 +34,7 @@ class YAMLField(six.with_metaclass(models.SubfieldBase, models.TextField)):
         if isinstance(value, (dict, list)):
             value = yaml.dump(
                 value,
-                Dumper=DjangoSafeDumper,
+                Dumper=OrderedDumper,
                 default_flow_style=False
             )
         return super(YAMLField, self).get_db_prep_save(
@@ -54,9 +54,10 @@ class YAMLField(six.with_metaclass(models.SubfieldBase, models.TextField)):
             return value
         return yaml.dump(
             value,
-            Dumper=DjangoSafeDumper,
+            Dumper=OrderedDumper,
             default_flow_style=False
         )
+
 
 try:
     from south.modelsinspector import add_introspection_rules
