@@ -1,7 +1,5 @@
 from __future__ import absolute_import
-
 import collections
-
 from django.db import models
 from .fields import YAMLField
 from django.test import TestCase
