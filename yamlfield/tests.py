@@ -1,5 +1,7 @@
 from __future__ import absolute_import
+import json
 import collections
+from pprint import pprint
 from django.db import models
 from .fields import YAMLField
 from django.test import TestCase
@@ -84,7 +86,7 @@ class YAMLFieldTest(TestCase):
         obj2 = YAMLModel.objects.create(yaml='')
         YAMLModel._meta.get_field('yaml').value_from_object(obj2)
 
-    def test_yaml_ordereddict(self):
+    def test_ordereddict(self):
         """
         Test storing an OrderedDict
         """
@@ -98,3 +100,35 @@ class YAMLFieldTest(TestCase):
         ordered_data['seven'] = 7
         self.assertEqual(dict(ordered_data), dict(new_obj.yaml[0]))
         self.failIfEqual(new_obj.yaml, [ordered_data])
+
+    def test_nested_ordereddict(self):
+        """
+        Test an ordered dict nested in the YAML data
+        """
+        data = """{
+          "pk": 11,
+          "model": "core.chaineditem",
+          "fields": {
+            "chain": [
+              "1fs-article-default-forced-utf8"
+            ],
+            "parameters": "OrderedDict([('download', OrderedDict([('force_encoding', 'utf-8')]))])",
+            "notes_fr": "...",
+            "is_active": true,
+            "check_error": null,
+            "item_type": [
+              "core",
+              "processingchain"
+            ],
+            "is_valid": true,
+            "notes_nt": "",
+            "item_id": 2,
+            "position": 0,
+            "notes_en": ""
+          }
+        }
+        """
+        data = json.loads(data)
+        obj = YAMLModel.objects.create(yaml=[data])
+        obj = YAMLModel.objects.get(id=obj.id)
+        self.failUnlessEqual(obj.yaml, [data])
