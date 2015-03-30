@@ -129,6 +129,6 @@ class YAMLFieldTest(TestCase):
         }
         """
         data = json.loads(data)
-        obj = YAMLModel.objects.create(yaml=[data])
+        obj = YAMLModel.objects.create(yaml=data)
         obj = YAMLModel.objects.get(id=obj.id)
-        self.failUnlessEqual(obj.yaml, [data])
+        self.failUnlessEqual(obj.yaml, data)
