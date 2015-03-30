@@ -3,6 +3,6 @@ coverage
 greeking
 pep8
 pyflakes
-python-coverall
+python-coveralls
 six
 tox
