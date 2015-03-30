@@ -1,7 +1,6 @@
 from __future__ import absolute_import
 import json
 import collections
-from pprint import pprint
 from django.db import models
 from .fields import YAMLField
 from django.test import TestCase
@@ -112,7 +111,8 @@ class YAMLFieldTest(TestCase):
             "chain": [
               "1fs-article-default-forced-utf8"
             ],
-            "parameters": "OrderedDict([('download', OrderedDict([('force_encoding', 'utf-8')]))])",
+            "parameters": "OrderedDict([('download',OrderedDict([\
+('force_encoding', 'utf-8')]))])",
             "notes_fr": "...",
             "is_active": true,
             "check_error": null,
