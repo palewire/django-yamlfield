@@ -16,7 +16,7 @@ class YAMLField(six.with_metaclass(models.SubfieldBase, models.TextField)):
         Convert our YAML string to a Python object
         after we load it from the DB.
         """
-        if value == "":
+        if value in ("", None):
             return None
         try:
             if isinstance(value, six.string_types):
@@ -30,7 +30,7 @@ class YAMLField(six.with_metaclass(models.SubfieldBase, models.TextField)):
         Convert our Python object to a string of YAML before we save.
         """
         if not value or value == "":
-            return ""
+            return None
         if isinstance(value, (dict, list)):
             value = yaml.dump(
                 value,
