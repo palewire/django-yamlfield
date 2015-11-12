@@ -27,14 +27,14 @@ class TestCommand(Command):
         )
         from django.core.management import call_command
         import django
-        if django.VERSION[:2] >= (1, 7):
+        if django.VERSION[:2] >= (1, 8):
             django.setup()
         call_command('test', 'yamlfield')
 
 
 setup(
     name='django-yamlfield',
-    version='1.0.1',
+    version='1.0.2',
     description='A Django database field for storing YAML data',
     author='Ben Welsh',
     author_email='ben.welsh@latimes.com',
