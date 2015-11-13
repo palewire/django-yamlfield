@@ -56,9 +56,6 @@ class YAMLField(models.Field):
     """
     description = "A django yaml field"
 
-    def db_type(self, connection):
-        return 'YamlField'
-
     def get_internal_type(self):
         return 'TextField'
 
