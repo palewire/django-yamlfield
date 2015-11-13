@@ -5,13 +5,16 @@ cache:
     - $HOME/.cache/pip
 python:
   - "2.7"
-  - "3.3"
   - "3.4"
+  - "3.5"
 env:
-  - DJANGO_VERSION=1.5
-  - DJANGO_VERSION=1.6
-  - DJANGO_VERSION=1.7
-  - DJANGO_VERSION=1.8b1
+  - DJANGO_VERSION=1.7.10
+  - DJANGO_VERSION=1.8.6
+  - DJANGO_VERSION=1.9b1
+matrix:
+  exclude:
+    - python: "3.5"
+      env: "DJANGO_VERSION=1.7.8"
 install:
   - export XDG_CACHE_HOME=$HOME/.cache/
   - pip install -q Django==$DJANGO_VERSION
