@@ -5,9 +5,6 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from .serializers import OrderedDumper, OrderedLoader
 
-if django.VERSION < (1, 8):
-    from django.db.models.field.subclassing import SubfieldBase
-
 
 class YAMLFieldMixin(models.TextField):
 
@@ -70,7 +67,7 @@ if django.VERSION > (1, 8):
         Based on https://github.com/bradjasper/django-jsonfield
         """
 else:
-    class YAMLField(SubfieldBase, YAMLFieldMixin):
+    class YAMLField(six.with_metaclass(models.SubfieldBase, YAMLFieldMixin)):
         """
         YAMLField is a TextField that serializes and deserializes YAML data
         from the database.
