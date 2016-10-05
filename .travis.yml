@@ -1,20 +1,12 @@
 language: python
 sudo: false
-cache:
-  directories:
-    - $HOME/.cache/pip
 python:
   - "2.7"
   - "3.5"
 env:
   - DJANGO_VERSION=1.9.10
   - DJANGO_VERSION=1.10.2
-matrix:
-  exclude:
-    - python: "3.5"
-      env: "DJANGO_VERSION=1.7.11"
 install:
-  - export XDG_CACHE_HOME=$HOME/.cache/
   - pip install -q Django==$DJANGO_VERSION
   - pip install -r requirements.txt
 script:
