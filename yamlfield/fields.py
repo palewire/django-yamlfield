@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 from .serializers import OrderedDumper, OrderedLoader
 
 
-class YAMLFieldMixin(models.TextField):
+class YAMLField(models.TextField):
 
     def db_type(self, connection):
         return 'TextField'
@@ -57,44 +57,3 @@ class YAMLFieldMixin(models.TextField):
             Dumper=OrderedDumper,
             default_flow_style=False
         )
-
-if django.VERSION > (1, 8):
-    class YAMLField(YAMLFieldMixin):
-        """
-        YAMLField is a TextField that serializes and deserializes YAML data
-        from the database.
-
-        Based on https://github.com/bradjasper/django-jsonfield
-        """
-else:
-    class YAMLField(six.with_metaclass(models.SubfieldBase, YAMLFieldMixin)):
-        """
-        YAMLField is a TextField that serializes and deserializes YAML data
-        from the database.
-
-        Based on https://github.com/bradjasper/django-jsonfield
-        """
-
-        def get_db_prep_save(self, value, connection):
-            """
-            Convert our Python object to a string of YAML before we save.
-            """
-            if not value or value == "":
-                return ""
-            if isinstance(value, (dict, list)):
-                value = yaml.dump(
-                    value,
-                    Dumper=OrderedDumper,
-                    default_flow_style=False
-                )
-            return super(YAMLField, self).get_db_prep_save(
-                value,
-                connection=connection
-            )
-
-
-try:
-    from south.modelsinspector import add_introspection_rules
-    add_introspection_rules([], ["^yamlfield\.fields\.YAMLField"])
-except ImportError:
-    pass
