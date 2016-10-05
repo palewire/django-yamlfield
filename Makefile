@@ -1,6 +1,5 @@
 .PHONY: test
 
 test:
-	pep8 yamlfield
-	pyflakes yamlfield
+	flake8 yamlfield
 	coverage run setup.py test
