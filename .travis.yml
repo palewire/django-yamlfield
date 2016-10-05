@@ -5,23 +5,19 @@ cache:
     - $HOME/.cache/pip
 python:
   - "2.7"
-  - "3.4"
   - "3.5"
 env:
-  - DJANGO_VERSION=1.7.10
-  - DJANGO_VERSION=1.8.6
-  - DJANGO_VERSION=1.9b1
+  - DJANGO_VERSION=1.9.10
+  - DJANGO_VERSION=1.10.2
 matrix:
   exclude:
     - python: "3.5"
-      env: "DJANGO_VERSION=1.7.10"
+      env: "DJANGO_VERSION=1.7.11"
 install:
   - export XDG_CACHE_HOME=$HOME/.cache/
   - pip install -q Django==$DJANGO_VERSION
   - pip install -r requirements.txt
 script:
- - pep8 yamlfield
- - pyflakes yamlfield
- - coverage run setup.py test
+ - make test
 after_success:
   - coveralls

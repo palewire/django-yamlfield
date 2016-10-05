@@ -1,16 +1,18 @@
 import six
 import yaml
 from django.db import models
+from django.core.exceptions import ValidationError
 from .serializers import OrderedDumper, OrderedLoader
 
 
-class YAMLField(six.with_metaclass(models.SubfieldBase, models.TextField)):
-    """
-    YAMLField is a TextField that serializes and deserializes YAML data
-    from the database.
+class YAMLField(models.TextField):
 
-    Based on https://github.com/bradjasper/django-jsonfield
-    """
+    def db_type(self, connection):
+        return 'TextField'
+
+    def from_db_value(self, value, expression, connection, context):
+        return self.to_python(value)
+
     def to_python(self, value):
         """
         Convert our YAML string to a Python object
@@ -22,10 +24,10 @@ class YAMLField(six.with_metaclass(models.SubfieldBase, models.TextField)):
             if isinstance(value, six.string_types):
                 return yaml.load(value, OrderedLoader)
         except ValueError:
-            pass
+            raise ValidationError("Enter valid YAML")
         return value
 
-    def get_db_prep_save(self, value, connection):
+    def get_prep_value(self, value):
         """
         Convert our Python object to a string of YAML before we save.
         """
@@ -37,10 +39,7 @@ class YAMLField(six.with_metaclass(models.SubfieldBase, models.TextField)):
                 Dumper=OrderedDumper,
                 default_flow_style=False
             )
-        return super(YAMLField, self).get_db_prep_save(
-            value,
-            connection=connection
-        )
+        return value
 
     def value_from_object(self, obj):
         """
@@ -57,10 +56,3 @@ class YAMLField(six.with_metaclass(models.SubfieldBase, models.TextField)):
             Dumper=OrderedDumper,
             default_flow_style=False
         )
-
-
-try:
-    from south.modelsinspector import add_introspection_rules
-    add_introspection_rules([], ["^yamlfield\.fields\.YAMLField"])
-except ImportError:
-    pass

@@ -1,8 +1,9 @@
+Django
 PyYAML
 coverage
 greeking
-pep8
-pyflakes
+flake8
 python-coveralls
 six
 tox
+twine

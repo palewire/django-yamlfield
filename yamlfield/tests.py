@@ -1,6 +1,8 @@
 from __future__ import absolute_import
 import json
 import collections
+
+from django.core.exceptions import ValidationError
 from django.db import models
 from .fields import YAMLField
 from django.test import TestCase
@@ -72,7 +74,9 @@ class YAMLFieldTest(TestCase):
         self.failUnlessEqual(row[1], "")
 
     def test_bad_yaml_to_python(self):
-        YAMLField().to_python('2013-01-65')
+        with self.assertRaises(ValidationError) as exc:
+            YAMLField().to_python('2013-01-65')
+        self.assertEqual("Enter valid YAML", exc.exception.message)
 
     def test_value_from_object(self):
         yaml_obj = {
