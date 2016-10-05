@@ -6,3 +6,4 @@ flake8
 python-coveralls
 six
 tox
+twine
