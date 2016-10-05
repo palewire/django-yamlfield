@@ -1,19 +1,21 @@
+import django
 import six
 import yaml
 from django.core.exceptions import ValidationError
 from django.db import models
 from .serializers import OrderedDumper, OrderedLoader
 
+if django.VERSION < (1, 8):
+    from django.db.models.field.subclassing import SubfieldBase
 
-class YAMLField(models.TextField):
-    """
-    YAMLField is a TextField that serializes and deserializes YAML data
-    from the database.
 
-    Based on https://github.com/bradjasper/django-jsonfield
-    """
+class YAMLFieldMixin(models.TextField):
+
     def db_type(self, connection):
         return 'TextField'
+
+    def from_db_value(self, value, expression, connection, context):
+        return self.to_python(value)
 
     def to_python(self, value):
         """
@@ -28,9 +30,6 @@ class YAMLField(models.TextField):
         except ValueError:
             raise ValidationError("Enter valid YAML")
         return value
-
-    def from_db_value(self, value, expression, connection, context):
-        return self.to_python(value)
 
     def get_prep_value(self, value):
         """
@@ -61,6 +60,40 @@ class YAMLField(models.TextField):
             Dumper=OrderedDumper,
             default_flow_style=False
         )
+
+if django.VERSION > (1, 8):
+    class YAMLField(YAMLFieldMixin):
+        """
+        YAMLField is a TextField that serializes and deserializes YAML data
+        from the database.
+
+        Based on https://github.com/bradjasper/django-jsonfield
+        """
+else:
+    class YAMLField(SubfieldBase, YAMLFieldMixin):
+        """
+        YAMLField is a TextField that serializes and deserializes YAML data
+        from the database.
+
+        Based on https://github.com/bradjasper/django-jsonfield
+        """
+
+        def get_db_prep_save(self, value, connection):
+            """
+            Convert our Python object to a string of YAML before we save.
+            """
+            if not value or value == "":
+                return ""
+            if isinstance(value, (dict, list)):
+                value = yaml.dump(
+                    value,
+                    Dumper=OrderedDumper,
+                    default_flow_style=False
+                )
+            return super(YAMLField, self).get_db_prep_save(
+                value,
+                connection=connection
+            )
 
 
 try:
