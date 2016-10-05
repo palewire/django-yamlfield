@@ -40,6 +40,7 @@ setup(
     author_email='ben.welsh@latimes.com',
     packages=find_packages(),
     include_package_data=True,
+    license="MIT",
     install_requires=(
         'PyYAML>=3.10',
         'six>=1.4.1'
