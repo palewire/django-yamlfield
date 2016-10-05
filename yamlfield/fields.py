@@ -1,8 +1,8 @@
-import django
 import six
 import yaml
-from django.core.exceptions import ValidationError
+import django
 from django.db import models
+from django.core.exceptions import ValidationError
 from .serializers import OrderedDumper, OrderedLoader
 
 
