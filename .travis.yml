@@ -18,8 +18,6 @@ install:
   - pip install -q Django==$DJANGO_VERSION
   - pip install -r requirements.txt
 script:
- - pep8 yamlfield
- - pyflakes yamlfield
- - coverage run setup.py test
+ - make test
 after_success:
   - coveralls
