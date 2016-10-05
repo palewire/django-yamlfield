@@ -38,6 +38,7 @@ setup(
     description='A Django database field for storing YAML data',
     author='The Los Angeles Times Data Desk',
     author_email='datadesk@latimes.com',
+    url="http://django-yamlfield.readthedocs.io/",
     packages=find_packages(),
     include_package_data=True,
     license="MIT",
