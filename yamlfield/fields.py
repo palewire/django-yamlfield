@@ -7,9 +7,6 @@ from .serializers import OrderedDumper, OrderedLoader
 
 class YAMLField(models.TextField):
 
-    def db_type(self, connection):
-        return 'TextField'
-
     def from_db_value(self, value, expression, connection, context):
         return self.to_python(value)
 
