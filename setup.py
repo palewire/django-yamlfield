@@ -33,7 +33,7 @@ class TestCommand(Command):
 
 setup(
     name='django-yamlfield',
-    version='1.0.2',
+    version='1.0.3',
     description='A Django database field for storing YAML data',
     author='The Los Angeles Times Data Desk',
     author_email='datadesk@latimes.com',
