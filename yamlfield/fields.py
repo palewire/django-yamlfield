@@ -1,8 +1,7 @@
 import six
-import yaml
+import ruamel.yaml as yaml
 from django.db import models
 from django.core.exceptions import ValidationError
-from .serializers import OrderedDumper, OrderedLoader
 
 
 class YAMLField(models.TextField):
@@ -19,7 +18,7 @@ class YAMLField(models.TextField):
             return None
         try:
             if isinstance(value, six.string_types):
-                return yaml.load(value, OrderedLoader)
+                return yaml.load(value, yaml.RoundTripLoader)
         except ValueError:
             raise ValidationError("Enter valid YAML")
         return value
@@ -33,7 +32,7 @@ class YAMLField(models.TextField):
         if isinstance(value, (dict, list)):
             value = yaml.dump(
                 value,
-                Dumper=OrderedDumper,
+                Dumper=yaml.RoundTripDumper,
                 default_flow_style=False
             )
         return value
@@ -50,6 +49,6 @@ class YAMLField(models.TextField):
             return value
         return yaml.dump(
             value,
-            Dumper=OrderedDumper,
+            Dumper=yaml.RoundTripDumper,
             default_flow_style=False
         )

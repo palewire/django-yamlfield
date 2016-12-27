@@ -1,4 +1,4 @@
-PyYAML
+ruamel.yaml==0.13.5
 coverage
 greeking
 flake8
