@@ -33,7 +33,8 @@ class YAMLField(models.TextField):
             value = yaml.dump(
                 value,
                 Dumper=yaml.RoundTripDumper,
-                default_flow_style=False
+                default_flow_style=False,
+                allow_unicode = True,
             )
         return value
 
@@ -50,5 +51,7 @@ class YAMLField(models.TextField):
         return yaml.dump(
             value,
             Dumper=yaml.RoundTripDumper,
-            default_flow_style=False
+            default_flow_style=False,
+            allow_unicode = True,
+
         )
