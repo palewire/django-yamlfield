@@ -42,7 +42,7 @@ setup(
     include_package_data=True,
     license="MIT",
     install_requires=(
-        'ruamel.yaml>=0.13.15',
+        'ruamel.yaml>=0.13.5',
         'six>=1.4.1'
     ),
     classifiers=[
