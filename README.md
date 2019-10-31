@@ -15,7 +15,10 @@ A Django database field for storing [YAML](http://en.wikipedia.org/wiki/YAML) da
 * Testing: [travis-ci.org/datadesk/django-yamlfield](https://travis-ci.org/datadesk/django-yamlfield)
 * Coverage: [coveralls.io/r/datadesk/django-yamlfield](https://coveralls.io/r/datadesk/django-yamlfield)
 
+
+
 YamlField in Templates
+------------------------
 
 By default, YamlField returns the contents as an OrderedDitc.  To display a yamlfield in a template as text, use the template filter as_text::
 
@@ -32,11 +35,11 @@ To edit with the Ace Editor::
 	
 The setup Ace Editor (see more here: https://ace.c9.io/)::
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.6/ace.js" type="text/javascript" charset="utf-8"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.6/mode-yaml.js" type="text/javascript" charset="utf-8"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.6/theme-github.js" type="text/javascript" 
-  
-  <script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.6/ace.js" type="text/javascript" charset="utf-8"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.6/mode-yaml.js" type="text/javascript" charset="utf-8"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.6/theme-github.js" type="text/javascript" 
+	  
+	  <script>
         var options = {
           theme: "ace/theme/github",
           mode: "ace/mode/yaml",
@@ -63,5 +66,7 @@ The setup Ace Editor (see more here: https://ace.c9.io/)::
 
 	  });
 	  
-</script>
+	</script>
+	
+	
 
