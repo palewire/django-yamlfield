@@ -6,3 +6,5 @@ MANIFEST
 dist/*
 testproject/*
 *.pyc
+.DT_Store
+
