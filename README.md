@@ -33,7 +33,7 @@ To edit with the Ace Editor::
 	<div id="ace_settings"></div>
 	
 	
-The setup Ace Editor (see more here: https://ace.c9.io/)::
+To setup Ace Editor (see more here: https://ace.c9.io/)::
 
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.6/ace.js" type="text/javascript" charset="utf-8"></script>
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.6/mode-yaml.js" type="text/javascript" charset="utf-8"></script>
