@@ -2,7 +2,6 @@
 Custom YAML serializers that maintain their order
 """
 import yaml
-from collections import OrderedDict
 from django.core.serializers.pyyaml import DjangoSafeDumper
 
 
@@ -12,7 +11,7 @@ class OrderedLoader(yaml.SafeLoader):
 
 def construct_mapping(loader, node):
     loader.flatten_mapping(node)
-    return OrderedDict(loader.construct_pairs(node))
+    return dict(loader.construct_pairs(node))
 
 OrderedLoader.add_constructor(
     yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG,
@@ -30,4 +29,4 @@ def _dict_representer(dumper, data):
         data.items()
     )
 
-OrderedDumper.add_representer(OrderedDict, _dict_representer)
+OrderedDumper.add_representer(dict, _dict_representer)
