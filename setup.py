@@ -23,7 +23,7 @@ class TestCommand(Command):
                 }
             },
             MIDDLEWARE_CLASSES=(),
-            INSTALLED_APPS=('yamlfield',)
+            INSTALLED_APPS=('yamlfield', )
         )
         from django.core.management import call_command
         import django
@@ -57,5 +57,5 @@ setup(
         'Framework :: Django :: 1.10',
         'License :: OSI Approved :: MIT License',
     ],
-    cmdclass={'test': TestCommand,}
+    cmdclass={'test': TestCommand, }
 )
