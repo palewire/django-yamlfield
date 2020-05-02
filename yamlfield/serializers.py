@@ -13,6 +13,7 @@ def construct_mapping(loader, node):
     loader.flatten_mapping(node)
     return dict(loader.construct_pairs(node))
 
+
 OrderedLoader.add_constructor(
     yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG,
     construct_mapping
@@ -28,5 +29,6 @@ def _dict_representer(dumper, data):
         yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG,
         data.items()
     )
+
 
 OrderedDumper.add_representer(dict, _dict_representer)
