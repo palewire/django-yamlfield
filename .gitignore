@@ -6,3 +6,4 @@ MANIFEST
 dist/*
 testproject/*
 *.pyc
+.idea
