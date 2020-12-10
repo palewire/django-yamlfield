@@ -6,3 +6,4 @@ python-coveralls
 six
 tox
 twine
+django-appconf

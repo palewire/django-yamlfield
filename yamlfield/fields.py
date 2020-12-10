@@ -1,12 +1,13 @@
 import six
 import yaml
-from django.db import models
+from django.conf import settings
 from django.core.exceptions import ValidationError
+from django.db import models
+
 from .serializers import OrderedDumper, OrderedLoader
 
 
 class YAMLField(models.TextField):
-
     def from_db_value(self, value, expression, connection, context):
         return self.to_python(value)
 
@@ -34,7 +35,8 @@ class YAMLField(models.TextField):
             value = yaml.dump(
                 value,
                 Dumper=OrderedDumper,
-                default_flow_style=False
+                default_flow_style=settings.YAMLFIELD_DUMPER_DEFAULT_FLOW_STYLE,
+                allow_unicode=settings.YAMLFIELD_DUMPER_ALLOW_UNICODE,
             )
         return value
 
@@ -51,5 +53,6 @@ class YAMLField(models.TextField):
         return yaml.dump(
             value,
             Dumper=OrderedDumper,
-            default_flow_style=False
+            default_flow_style=settings.YAMLFIELD_DUMPER_DEFAULT_FLOW_STYLE,
+            allow_unicode=settings.YAMLFIELD_DUMPER_ALLOW_UNICODE,
         )
