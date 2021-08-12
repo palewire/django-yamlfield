@@ -7,9 +7,9 @@ from .serializers import OrderedDumper, OrderedLoader
 
 class YAMLField(models.TextField):
 
-    def from_db_value(self, value, expression, connection, context):
+    def from_db_value(self, value, expression, connection, context=None):
         """
-        Everything but the value is unnecessary information
+        Everything but the value is unnecessary information. Default value for context is necessary for Django 3.0+
         """
         return self.to_python(value)
 
