@@ -8,6 +8,9 @@ from .serializers import OrderedDumper, OrderedLoader
 class YAMLField(models.TextField):
 
     def from_db_value(self, value, expression, connection, context):
+        """
+        Everything but the value is unnecessary information
+        """
         return self.to_python(value)
 
     def to_python(self, value):
