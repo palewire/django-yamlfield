@@ -44,7 +44,7 @@ jobs:
   test:
     strategy:
       matrix:
-        python: [3.6, 3.7, 3.8, 3.9]
+        python: [3.7, 3.8, 3.9]
         djano: ['2.2', '3.1']
     name: Test
     runs-on: ubuntu-latest
