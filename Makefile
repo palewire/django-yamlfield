@@ -1,12 +1,12 @@
 .PHONY: ship test
 
 ship:
-	python setup.py sdist bdist_wheel
-	twine upload dist/* --skip-existing
+	pipenv run python setup.py sdist bdist_wheel
+	pipenv run twine upload dist/* --skip-existing
 
 lint:
-	flake8 yamlfield
+	pipenv run flake8 yamlfield
 
 test:
-	coverage run setup.py test
-	coverage report -m
+	pipenv run coverage run setup.py test
+	pipenv run coverage report -m
