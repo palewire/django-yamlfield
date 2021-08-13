@@ -33,7 +33,7 @@ class TestCommand(Command):
 
 setup(
     name='django-yamlfield',
-    version='1.0.3',
+    version='1.1.0',
     description='A Django database field for storing YAML data',
     author='The Los Angeles Times Data Desk',
     author_email='datadesk@latimes.com',
@@ -42,19 +42,19 @@ setup(
     include_package_data=True,
     license="MIT",
     install_requires=(
-        'PyYAML>=3.10',
-        'six>=1.4.1'
+        'PyYAML>=3.10'
     ),
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Framework :: Django',
-        'Framework :: Django :: 1.9',
-        'Framework :: Django :: 1.10',
+        'Framework :: Django :: 2.2',
+        'Framework :: Django :: 3.1',
         'License :: OSI Approved :: MIT License',
     ],
     cmdclass={'test': TestCommand,}

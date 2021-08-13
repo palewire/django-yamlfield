@@ -1,4 +1,3 @@
-import six
 import yaml
 from django.db import models
 from django.core.exceptions import ValidationError
@@ -18,7 +17,7 @@ class YAMLField(models.TextField):
         if value == "":
             return None
         try:
-            if isinstance(value, six.string_types):
+            if isinstance(value, str):
                 return yaml.load(value, OrderedLoader)
         except ValueError:
             raise ValidationError("Enter valid YAML")

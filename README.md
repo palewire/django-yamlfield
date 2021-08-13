@@ -5,12 +5,8 @@
 
 A Django database field for storing [YAML](http://en.wikipedia.org/wiki/YAML) data
 
-[![Build Status](https://travis-ci.org/datadesk/django-yamlfield.png?branch=master)](https://travis-ci.org/datadesk/django-yamlfield)
-[![PyPI version](https://badge.fury.io/py/django-yamlfield.png)](http://badge.fury.io/py/django-yamlfield)
-[![Coverage Status](https://coveralls.io/repos/datadesk/django-yamlfield/badge.png?branch=master)](https://coveralls.io/r/datadesk/django-yamlfield?branch=master)
-
 * Docs: [django-yamlfield.rtfd.org](https://django-yamlfield.rtfd.org)
 * Issues: [github.com/datadesk/django-yamlfield/issues](https://github.com/datadesk/django-yamlfield/issues)
 * Packaging: [pypi.python.org/pypi/django-yamlfield](https://pypi.python.org/pypi/django-yamlfield)
-* Testing: [travis-ci.org/datadesk/django-yamlfield](https://travis-ci.org/datadesk/django-yamlfield)
-* Coverage: [coveralls.io/r/datadesk/django-yamlfield](https://coveralls.io/r/datadesk/django-yamlfield)
+* Testing: [github.com/datadesk/django-yamlfield/actions](https://github.com/datadesk/django-yamlfield/actions)
+
