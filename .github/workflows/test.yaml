@@ -45,7 +45,7 @@ jobs:
     strategy:
       matrix:
         python: [3.6, 3.7, 3.8, 3.9]
-        djano: ['2.2.*', '3.1.*']
+        djano: ['2.2', '3.1']
     name: Test
     runs-on: ubuntu-latest
     steps:
@@ -81,7 +81,7 @@ jobs:
 
       - id: install-django
         name: Install Django
-        run: pipenv install Django==${{ matrix.django }}
+        run: pipenv install --skip-lock Django~=${{ matrix.django }}
         shell: bash
 
       - id: run

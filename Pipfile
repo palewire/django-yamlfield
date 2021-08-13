@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 pyyaml = "*"
+django = "*"
 
 [dev-packages]
 flake8 = "*"
