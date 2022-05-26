@@ -70,7 +70,7 @@ setup(
     name="django-yamlfield",
     author="Ben Welsh",
     author_email="b@palewi.re",
-    url="http://django-yamlfield.readthedocs.io/",
+    url="https://palewi.re/docs/django-yamlfield/",
     description="A Django database field for storing YAML data",
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
@@ -96,4 +96,9 @@ setup(
     },
     setup_requires=["setuptools_scm"],
     use_scm_version={"version_scheme": version_scheme, "local_scheme": local_version},
+    project_urls={
+        "Documentation": "https://palewi.re/docs/django-yamlfield/",
+        "Source": "https://github.com/datadesk/django-yamlfield/",
+        "Tracker": "https://github.com/datadesk/django-yamlfield/issues",
+    },
 )
