@@ -1,1 +1,1 @@
-default_app_config = 'yamlfield.apps.YAMLFieldAppConfig'
+default_app_config = "yamlfield.apps.YAMLFieldAppConfig"

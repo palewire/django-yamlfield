@@ -11,6 +11,7 @@ django = "==4.0.*"
 flake8 = "*"
 twine = "*"
 setuptools-scm = "*"
+pre-commit = "*"
 
 [requires]
 python_version = "3.9"

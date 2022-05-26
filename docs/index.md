@@ -16,6 +16,7 @@ Add it to one of your models.
 from django.db import models
 from yamlfield.fields import YAMLField
 
+
 class YourModel(models.Model):
     yaml = YAMLField()
 ```

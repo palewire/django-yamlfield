@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class YAMLFieldAppConfig(AppConfig):
-    name = 'yamlfield'
+    name = "yamlfield"
     verbose_name = "YAML field"

@@ -1,11 +1,11 @@
 import yaml
-from django.db import models
 from django.core.exceptions import ValidationError
+from django.db import models
+
 from .serializers import OrderedDumper, OrderedLoader
 
 
 class YAMLField(models.TextField):
-
     def from_db_value(self, value, expression, connection, context=None):
         return self.to_python(value)
 
@@ -30,11 +30,7 @@ class YAMLField(models.TextField):
         if not value or value == "":
             return ""
         if isinstance(value, (dict, list)):
-            value = yaml.dump(
-                value,
-                Dumper=OrderedDumper,
-                default_flow_style=False
-            )
+            value = yaml.dump(value, Dumper=OrderedDumper, default_flow_style=False)
         return value
 
     def value_from_object(self, obj):
@@ -47,8 +43,4 @@ class YAMLField(models.TextField):
         value = getattr(obj, self.attname)
         if not value or value == "":
             return value
-        return yaml.dump(
-            value,
-            Dumper=OrderedDumper,
-            default_flow_style=False
-        )
+        return yaml.dump(value, Dumper=OrderedDumper, default_flow_style=False)
