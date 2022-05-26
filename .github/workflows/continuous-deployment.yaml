@@ -51,11 +51,7 @@ jobs:
 
       - id: pipenv-install
         name: Install Python dependencies
-        run: pipenv install --dev --python ${{ matrix.python }}
-
-      - id: install-django
-        name: Install Django
-        run: pipenv install --skip-lock Django~=${{ matrix.django }}
+        run: pipenv install --skip-lock pyyaml Django~=${{ matrix.django }}
         shell: bash
 
       - id: run
