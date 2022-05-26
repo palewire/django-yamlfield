@@ -12,6 +12,7 @@ flake8 = "*"
 twine = "*"
 setuptools-scm = "*"
 pre-commit = "*"
+sphinx = "*"
 
 [requires]
 python_version = "3.9"
