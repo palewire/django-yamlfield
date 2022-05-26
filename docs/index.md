@@ -9,7 +9,7 @@ Getting started
 Install this module
 
 ```bash
-$ pip install django-yamlfield
+pipenv install django-yamlfield
 ```
 
 Add it to one of your models.
