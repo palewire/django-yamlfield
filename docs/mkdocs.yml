@@ -1,1 +1,5 @@
 site_name: django-yamlfield
+plugins:
+    - redirects:
+        redirect_maps:
+            'index.md': 'https://palewi.re/docs/django-yamlfield/'
