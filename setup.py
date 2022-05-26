@@ -1,7 +1,42 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+import os
 from setuptools import setup, find_packages
 from distutils.core import Command
+
+
+def read(fname):
+    with open(os.path.join(os.path.dirname(__file__), fname)) as f:
+        return f.read()
+
+
+def version_scheme(version):
+    """
+    Version scheme hack for setuptools_scm.
+
+    Appears to be necessary to due to the bug documented here: https://github.com/pypa/setuptools_scm/issues/342
+
+    If that issue is resolved, this method can be removed.
+    """
+    import time
+
+    from setuptools_scm.version import guess_next_version
+
+    if version.exact:
+        return version.format_with("{tag}")
+    else:
+        _super_value = version.format_next_version(guess_next_version)
+        now = int(time.time())
+        return _super_value + str(now)
+
+
+def local_version(version):
+    """
+    Local version scheme hack for setuptools_scm.
+
+    Appears to be necessary to due to the bug documented here: https://github.com/pypa/setuptools_scm/issues/342
+
+    If that issue is resolved, this method can be removed.
+    """
+    return ""
 
 
 class TestCommand(Command):
@@ -33,11 +68,12 @@ class TestCommand(Command):
 
 setup(
     name='django-yamlfield',
-    version='1.1.0',
-    description='A Django database field for storing YAML data',
-    author='The Los Angeles Times Data Desk',
-    author_email='datadesk@latimes.com',
+    author='Ben Welsh',
+    author_email='b@palewi.re',
     url="http://django-yamlfield.readthedocs.io/",
+    description='A Django database field for storing YAML data',
+    long_description=read("README.md"),
+    long_description_content_type="text/markdown",
     packages=find_packages(),
     include_package_data=True,
     license="MIT",
@@ -51,10 +87,13 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
         'Framework :: Django',
-        'Framework :: Django :: 2.2',
         'Framework :: Django :: 3.1',
+        'Framework :: Django :: 4.0',
         'License :: OSI Approved :: MIT License',
     ],
-    cmdclass={'test': TestCommand,}
+    cmdclass={'test': TestCommand,},
+    setup_requires=["setuptools_scm"],
+    use_scm_version={"version_scheme": version_scheme, "local_scheme": local_version},
 )
