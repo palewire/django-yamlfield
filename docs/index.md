@@ -10,7 +10,7 @@ A Django database field for storing [YAML](http://en.wikipedia.org/wiki/YAML) da
 Install this module
 
 ```bash
-$ pip install django-yamlfield
+pipenv install django-yamlfield
 ```
 
 Add it to one of your models.
