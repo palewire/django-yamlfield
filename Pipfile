@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 pyyaml = "*"
-django = "==4.0.*"
+django = "==4.1.*"
 
 [dev-packages]
 flake8 = "*"
