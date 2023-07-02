@@ -99,7 +99,7 @@ setup(
     use_scm_version={"version_scheme": version_scheme, "local_scheme": local_version},
     project_urls={
         "Documentation": "https://palewi.re/docs/django-yamlfield/",
-        "Source": "https://github.com/datadesk/django-yamlfield/",
-        "Tracker": "https://github.com/datadesk/django-yamlfield/issues",
+        "Source": "https://github.com/palewire/django-yamlfield/",
+        "Tracker": "https://github.com/palewire/django-yamlfield/issues",
     },
 )
