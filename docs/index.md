@@ -23,8 +23,8 @@ class YourModel(models.Model):
 
 That's it! You can now start storing YAML data.
 
-## Links
+### Other resources
 
-* Repo: [https://github.com/datadesk/django-yamlfield](https://github.com/datadesk/django-yamlfield)
-* Issues: [https://github.com/datadesk/django-yamlfield/issues](https://github.com/datadesk/django-yamlfield/issues)
-* Packaging: [https://pypi.python.org/pypi/django-yamlfield](https://pypi.python.org/pypi/django-yamlfield)
+* Issues: [github.com/palewire/django-yamlfield/issues](https://github.com/palewire/django-yamlfield/issues)
+* Packaging: [pypi.python.org/pypi/django-yamlfield](https://pypi.python.org/pypi/django-yamlfield)
+* Testing: [github.com/palewire/django-yamlfield/actions](https://github.com/palewire/django-yamlfield/actions)
