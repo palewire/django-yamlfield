@@ -27,7 +27,6 @@ That's it! You can now start storing Python objects as YAML.
 obj = YourModel.objects.create(
     data={"a": "foo", "b": "baz"}
 )
-obj.save()
 ```
 
 ### Other resources
