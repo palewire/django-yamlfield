@@ -2,6 +2,7 @@ name: Continuous Deployment
 
 on:
   push:
+  pull_request:
   workflow_dispatch:
 
 concurrency:
