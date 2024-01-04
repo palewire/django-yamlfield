@@ -13,6 +13,8 @@ twine = "*"
 setuptools-scm = "*"
 pre-commit = "*"
 sphinx = "*"
+sphinx-palewire-theme = "*"
+myst-parser = "*"
 
 [requires]
 python_version = "3.11"

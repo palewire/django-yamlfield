@@ -1,6 +1,3 @@
-```{include} _templates/nav.html
-```
-
 # django-yamlfield
 
 A Django database field for storing [YAML](http://en.wikipedia.org/wiki/YAML) data
