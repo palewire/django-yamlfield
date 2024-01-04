@@ -18,10 +18,17 @@ from yamlfield.fields import YAMLField
 
 
 class YourModel(models.Model):
-    yaml = YAMLField()
+    data = YAMLField()
 ```
 
-That's it! You can now start storing YAML data.
+That's it! You can now start storing Python objects as YAML.
+
+```python
+obj = YourModel.objects.create(
+    data={"a": "foo", "b": "baz"}
+)
+obj.save()
+```
 
 ### Other resources
 
