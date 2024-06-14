@@ -1,4 +1,5 @@
 import yaml
+
 from django.core.exceptions import ValidationError
 from django.db import models
 
@@ -16,11 +17,18 @@ class YAMLField(models.TextField):
         """
         if value == "":
             return None
-        try:
-            if isinstance(value, str):
+
+        if isinstance(value, str):
+            try:
                 return yaml.load(value, OrderedLoader)
-        except ValueError:
-            raise ValidationError("Enter valid YAML")
+            except yaml.composer.ComposerError:
+                # try to read multiple yaml file separated with ---
+                try:
+                    return list(yaml.load_all(value, yaml.FullLoader))
+                except ValueError:
+                    raise ValidationError("Enter valid YAML")
+            except ValueError:
+                raise ValidationError("Enter valid YAML")
         return value
 
     def get_prep_value(self, value):
@@ -29,8 +37,15 @@ class YAMLField(models.TextField):
         """
         if not value or value == "":
             return ""
-        if isinstance(value, (dict, list)):
+        if isinstance(value, dict):
             value = yaml.dump(value, Dumper=OrderedDumper, default_flow_style=False)
+        elif isinstance(value, list):
+            dumped = ''
+            for count, d in enumerate(value, start=1):
+                dumped += yaml.dump(d, Dumper=OrderedDumper, default_flow_style=False)
+                if len(value) > count:
+                    dumped += "---\n"
+            return dumped
         return value
 
     def value_from_object(self, obj):
@@ -43,4 +58,13 @@ class YAMLField(models.TextField):
         value = getattr(obj, self.attname)
         if not value or value == "":
             return value
-        return yaml.dump(value, Dumper=OrderedDumper, default_flow_style=False)
+        if isinstance(value, list):
+            # multiple yaml file seperated with ---
+            dumped = ''
+            for count, d in enumerate(value, start=1):
+                dumped += yaml.dump(d, Dumper=OrderedDumper, default_flow_style=False)
+                if len(value) > count:
+                    dumped += "---\n"
+            return dumped
+        else:
+            return yaml.dump(value, Dumper=OrderedDumper, default_flow_style=False)
